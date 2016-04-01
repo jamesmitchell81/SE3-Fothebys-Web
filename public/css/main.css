@@ -1,0 +1,241 @@
+html, body, div, article, header, nav, ul, ol, li, a, form,
+legend, input, label, p, img, textarea,
+h1, h2, h3, h4, h5, h6, header {
+  margin: 0;
+  padding: 0;
+  list-style: none; }
+
+html {
+  box-sizing: border-box; }
+
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+table {
+  border-collapse: collapse; }
+
+body {
+  background: #fff;
+  width: 100%;
+  height: 100%; }
+
+.wrapper {
+  width: 80%;
+  margin: 0 auto; }
+
+header {
+  width: 100%; }
+
+header img {
+  display: block;
+  width: 60%;
+  margin: 2em auto; }
+
+.fb-title img {
+  width: 20%; }
+
+.body-wrap {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap; }
+
+.side-wrap {
+  max-width: 320px;
+  min-width: 200px;
+  height: 100%;
+  min-height: 100%;
+  background: #171615;
+  color: #fff;
+  position: fixed;
+  display: block; }
+
+.side-panel {
+  position: fixed;
+  right: 0;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  transition: all 0.25s ease; }
+
+.side-panel__closed {
+  width: 0;
+  padding: 0;
+  margin: 0; }
+
+.side-panel__open {
+  width: 50%;
+  padding: 2em;
+  margin: 1em 0;
+  box-shadow: -2px -2px 5px #cacaca, 2px 2px 5px #cacaca;
+  overflow-y: scroll; }
+
+nav {
+  width: 100%;
+  margin-top: 3em; }
+
+.nav-core {
+  color: #fff;
+  text-decoration: none;
+  display: block;
+  padding: 2em 0 2em 3em;
+  cursor: pointer; }
+
+.nav-tiles {
+  display: flex;
+  flex-direction: row; }
+
+.nav-tile {
+  color: #fff;
+  background: #171615;
+  width: 200px;
+  height: 200px;
+  margin: 1em;
+  padding: 2em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 2em;
+  letter-spacing: 1px;
+  text-align: center;
+  text-decoration: none; }
+
+.content-wrap {
+  width: 70%;
+  margin-left: 320px;
+  height: 100%; }
+
+.content {
+  margin: 0 auto;
+  width: 70%; }
+
+.page-title-bar {
+  padding: 1.5em;
+  width: 100%; }
+
+body, html {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 100%; }
+
+h1 {
+  font-size: 2.5em; }
+
+button, input, textarea {
+  font-family: "Fira Sans", sans-serif;
+  font-size: 1.2em; }
+
+.fb-title {
+  font-size: 2em;
+  font-weight: 100; }
+
+.nav-core, .nav-tile {
+  text-transform: uppercase;
+  letter-spacing: 1px; }
+
+form {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  background: #fff; }
+
+fieldset {
+  border: 1px solid #efefef;
+  box-shadow: -1px -1px 7px #cacaca, 1px 1px 7px #cacaca;
+  border-radius: 4px;
+  margin: 1em;
+  padding: 1em; }
+
+legend {
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  background: none;
+  float: left; }
+
+.form-element {
+  display: block;
+  margin: 1.5em 0; }
+
+.form-input-inline {
+  display: flex;
+  flex-direction: row; }
+
+.form-input-inline input {
+  margin: 0.5em; }
+
+label {
+  line-height: 1.5em; }
+
+input, .msg, textarea {
+  line-height: 1.5em;
+  padding: 0.35em 0.5em; }
+
+input, textarea {
+  width: 100%;
+  display: block;
+  border: none;
+  border-bottom: 1px solid #171615;
+  background: #fcfcfc;
+  border-radius: 2px; }
+
+::-webkit-input-placeholder {
+  font-size: 0.8em;
+  color: #999; }
+
+label, .msg {
+  width: 49%;
+  display: inline-block;
+  margin: 10px 0; }
+
+.msg {
+  text-align: right;
+  font-size: 0.9em; }
+
+.btn {
+  float: right;
+  padding: 0.5em 1em;
+  display: inline-block;
+  background: #efefef;
+  box-shadow: 1px 1px 1px #cacaca;
+  border-radius: 2px;
+  border: none;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer; }
+
+.option-item {
+  width: 100%;
+  float: left;
+  line-height: 1em;
+  margin: 0.25em; }
+
+.option-item input[type='checkbox'],
+.option-item input[type='radio'] {
+  display: none; }
+
+.option-item label {
+  background: #efefef;
+  box-shadow: 1px 1px 1px #cacaca;
+  border-radius: 2px;
+  border: none;
+  margin: 0;
+  padding: 0.5em 1em;
+  width: 100%;
+  cursor: pointer;
+  display: inline-block; }
+
+.option-item input[type='checkbox']:checked + label,
+.option-item input[type='radio']:checked + label {
+  background: #000;
+  color: #fff; }
+
+table {
+  width: 100%;
+  box-shadow: -1px -1px 7px #cacaca, 1px 1px 7px #cacaca; }
+
+th, td {
+  border: 1px solid #cacaca;
+  line-height: 1.5em;
+  padding: 0.5em; }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>{{ pagetitle }}</title>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+<body>
+
+    <div class="body-wrap">
+    <div class="side-wrap">
+      <header>
+        <img src="/img/fb-logo-white.svg" alt="Fothebys Auction House">
+      </header>
+      <nav>
+      {% for item in menuItems %}
+          <a href="{{ item['href'] }}">{{ item['text'] }}</a><br>
+      {% endfor %}
+      </nav>
+    </div>
+
+    <div class="content-wrap">
+      {% block content %}
+      {% endblock %}
+
+      <div class="side-panel side-panel__closed" id="side-bar">
+        sdfasdgasdg
+      </div>
+    </div>
+
+  </div>
+
+<script src="/js/ajax.js"></script>
+<script src="/js/side-bar.js"></script>
+</body>
+</html>
