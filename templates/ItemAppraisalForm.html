@@ -6,23 +6,21 @@
     <span class="form-element">
       <label for="">Client</label>
 
-      <span class="btn-group"><!-- v-show -->
+      <span class="btn-group">
         <span>Existing Client</span>
-        <button class="btn side-bar-loader" data-loads="ClientSearchForm">Yes</button>
-        <button class="btn side-bar-loader" data-loads="ClientDetailsForm">No</button>
+        <a class="btn side-bar-loader"
+           data-loads="existing-client-selection"
+           data-updates="existing-client-selected">
+                Yes
+          </a>
+        <a class="btn side-bar-loader"
+           data-loads="new-client-selection"
+           data-updates="existing-client-selected">
+                No
+          </a>
       </span>
 
-      <!-- details -->
-      <ul>
-        <li>Name: Client Name</li>
-        <li>Details:
-          <ul>
-            <li>Email: Email</li>
-            <li>Tel: Tel</li>
-          </ul>
-        </li>
-      </ul>
-      <!-- edit -->
+      <div id="existing-client-selected"></div>
     </span>
 
     <span class="form-element search-element">
@@ -45,38 +43,35 @@
 
     <span class="form-element">
       <label for="">Date Period</label>
-      <button @click.prevent="this.$dispatch('loadSideForm', 'DatePeriodForm')"
-              class="btn">
-              Add Date Period
-        </button>
+      <a class="btn side-bar-loader"
+         data-loads="date-period-selection"
+         data-updates="date-period-selected">
+              Set Date Period
+        </a>
 
-      <!-- details -->
-      <ul>
-        <li>Key: Value</li>
-      </ul>
-      <!-- edit -->
+      <div id="date-period-selected"></div>
     </span>
 
     <span class="form-element">
       <label for="">Item Dimensions</label>
-      <button @click.prevent="this.$dispatch('loadSideForm', 'ItemDimensionForm')"
-              class="btn">Add Dimensions
-            </button>
+      <a class="btn side-bar-loader"
+         data-loads="item-dimensions"
+         data-updates="item-dimensions-set">
+              Set Date Period
+        </a>
 
-      <!-- details-->
-      <ul>
-        <li>Key: Value</li>
-      </ul>
-      <!-- edit -->
+      <div id="item-dimensions-set"></div>
     </span>
 
     <span class="form-element">
       <label for="">Item Images</label>
-      <button @click.prevent="this.$dispatch('loadSideForm', 'ItemImagesForm')" class="btn">Add Images</button>
+      <a class="btn side-bar-loader"
+         data-loads="item-images"
+         data-updates="item-images-set">
+              Set Date Period
+        </a>
 
-      <!-- list of filenames -->
-
-      <!-- edit -->
+      <div id="item-images-set"></div>
     </span>
 
     <span class="form-element">
