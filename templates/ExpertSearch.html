@@ -1,0 +1,15 @@
+<form method="{{ method }}" action="{{ action }}">
+    <span class="form-element">
+      <label for="expert-name">Filter Experts</label>
+      <input type="text"
+             class="search-field"
+             data-search="expert-selection/search/"
+             name="expert-name" id="expert-name">
+    </span>
+
+    <div id="search-results">
+      {% block content %}
+      {% endblock %}
+    </div>
+
+</form>

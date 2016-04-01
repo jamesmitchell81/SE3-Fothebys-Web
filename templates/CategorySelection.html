@@ -1,0 +1,8 @@
+<form method="{{ method }}" action="{{ action }}">
+  {% for category in categories %}
+  <span class="option-item">
+    <input type="radio" name="category" id="category-{{ category.id }}">
+    <label for="category-{{ category.id }}">{{ category.name }}</label>
+  </span>
+  {% endfor %}
+</form>

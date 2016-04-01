@@ -28,7 +28,7 @@ window.ajax = (function() {
       http.send(data);
     },
     JSON: function() {
-      this.contentType = "application/json;charset=UTF-8";
+      this.contentType = "application/json"; //charset=UTF-8";
       return this;
     },
     XML: function() {

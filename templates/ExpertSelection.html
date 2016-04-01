@@ -1,12 +1,35 @@
-<form method="post" action="expert-selection/search">
-
-    <span class="form-element">
-      <label for="Expert Name">Expert Name</label>
-      <input type="text" v-model="itemName">
-    </span>
-
-    <button class="btn">Search</button>
-
-    list of experts....
+<form method="{{ method }}" action="{{ action }}">
+  <table class="form-table">
+    <thead>
+      <th></th>
+      <th>Name</th>
+      <th>Location</th>
+      <th>Category</th>
+    </thead>
+    <tbody>
+    {% for expert in experts %}
+      <tr>
+        <td>
+          <input type="radio" name="expert" id="expert-{{ expert.id }}">
+        </td>
+        <td>
+          <label class="form-table-label" for="expert-{{ expert.id }}">
+              {{ expert.firstName }} {{ expert.surname }}
+            </label>
+        </td>
+        <td>
+          <label class="form-table-label" for="expert-{{ expert.id }}">
+            {{ expert.location.name }}
+          </label>
+        </td>
+        <td>
+          <label class="form-table-label" for="expert-{{ expert.id }}">
+            {{ expert.category.name }}
+          </label>
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
 
 </form>

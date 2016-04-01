@@ -25,32 +25,22 @@
       <!-- edit -->
     </span>
 
-    <span class="form-element">
+    <span class="form-element search-element">
       <label for="">Expert</label>
-      <button class="btn side-bar-loader" data-loads="expert-selection">Add Expert</button>
+      <a class="btn side-bar-loader"
+         data-loads="expert-selection"
+         data-updates="expert-selected">Select Expert</a>
 
-      <!-- details -->
-      <ul>
-        <li>Name: Expert Name</li>
-        <li>Specialities:
-          <ul>
-            <li>Speciality</li>
-            <li>Speciality</li>
-          </ul>
-        </li>
-      </ul>
-      <!-- edit -->
+      <div id="expert-selected"></div>
     </span>
 
     <span class="form-element">
       <label for="">Category</label>
-      <button class="btn side-bar-loader" data-loads="CategorySelection">Select Category</button>
+      <a class="btn side-bar-loader"
+         data-loads="category-selection"
+         data-updates="category-selected">Select Category</a>
 
-      <!-- details -->
-      <ul>
-        <li>Category: Category Name</li>
-      </ul>
-      <!-- edit -->
+      <div id="category-selected"></div>
     </span>
 
     <span class="form-element">
@@ -91,7 +81,7 @@
 
     <span class="form-element">
       <label for="itemName">Item Name</label>
-      <input type="text" v-model="itemName">
+      <input type="text" name="itemName" id="itemName">
     </span>
 
     <span class="form-element">
@@ -146,7 +136,5 @@
     </span>
 
   </form>
-
-
 
 {% endblock %}

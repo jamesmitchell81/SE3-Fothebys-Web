@@ -39,12 +39,18 @@ header img
   padding: 0
   margin: 0
 
+.side-panel__closed #close-side-bar
+  display: none;
+
 .side-panel__open
   width: 50%
   padding: 2em
   margin: 1em 0
   box-shadow: -2px -2px 5px #cacaca, 2px 2px 5px #cacaca
   overflow-y: scroll
+
+.side-panel__open #close-side-bar
+  display: block;
 
 // .slideout-transition
 //   transition: all 0.5s ease

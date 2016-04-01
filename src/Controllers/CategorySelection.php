@@ -2,22 +2,22 @@
 
 use Fotheby\Util\DataAccess;
 
-class ExpertSelection extends Controller
+class CategorySelection extends Controller
 {
 
   public function display()
   {
     $dataAccess = new DataAccess();
-    $json = $dataAccess->get('expert');
+    $json = $dataAccess->get('category');
     $list = json_decode($json);
 
     $data = [
-      'experts' => $list,
-      'action'  => 'expert-selected',
+      'categories' => $list,
+      'action'  => 'category-selected',
       'method'  => 'POST'
     ];
 
-    $html = $this->view->render("ExpertSelection", $data);
+    $html = $this->view->render("CategorySelection", $data);
     $this->response->setContent($html);
   }
 
@@ -28,36 +28,33 @@ class ExpertSelection extends Controller
     foreach ($data as $key => $value) {
       if ( $value['value'] == true )
       {
-        $id = (int)preg_replace('/^expert-/', '', $value['key']);
+        $id = (int)preg_replace('/^category-/', '', $value['key']);
       }
     }
 
     $dataAccess = new DataAccess();
-    $json = $dataAccess->get("expert/{$id}");
+    $json = $dataAccess->get("category/{$id}");
     $list = json_decode($json, true);
 
-    $expert = [
+    $category = [
       'id' => $id,
-      'title' => $list['title'],
-      'firstName' => $list['firstName'],
-      'surname' => $list['surname'],
-      'email' => $list['emailAddress'],
+      'name' => $list['name']
     ];
 
     session_start();
-    $_SESSION['expert'] = $expert;
+    $_SESSION['category'] = $category;
   }
 
   public function retrieve()
   {
     session_start();
-    $expert = $_SESSION['expert'];
+    $category = $_SESSION['category'];
 
     $data = [
-      'expert' => $expert
+      'category' => $category
     ];
 
-    $html = $this->view->render("ExpertDetails", $data);
+    $html = $this->view->render("CategoryDetails", $data);
     $this->response->setContent($html);
   }
 
