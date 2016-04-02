@@ -28,6 +28,8 @@
       btn.addEventListener("click", updateDetails, false);
       btn.addEventListener("click", closeSidebar, false);
       sideBarContent.firstElementChild.appendChild(btn);
+      sideBarContent.querySelectorAll('input, textarea')[0].focus();
+      assignEvents();
     });
 
     sideBar.classList.remove("side-panel__closed");
@@ -42,9 +44,12 @@
     var formData = collectFormData(form);
     var send = "json=" + JSON.stringify(formData);
 
+    console.log(send);
+
     ajax.post(updates, send, function(rep) {
       // doc.write(rep);
       ajax.get(updates, function(data) {
+        // doc.write(data);
         details.innerHTML = data;
       });
     });
@@ -72,12 +77,18 @@
   }
 
   function assignEvents() {
+    var imageInput = doc.getElementById('image-input');
     var ajaxBtns = doc.querySelectorAll('.ajax-btn');
-
     for ( var i = 0; i < ajaxBtns.length; i++ ) {
       ajaxBtns[i].addEventListener("click", function(e) {
         e.preventDefault();
       }, false);
+    }
+
+    console.log(imageInput);
+
+    if ( imageInput ) {
+      imageInput.addEventListener('change', updateImages, false);
     }
   }
 
@@ -88,5 +99,62 @@
     sideBar.classList.add("side-panel__closed");
   }
 
+
+  function updateImages(e) {
+    var src = e.target;
+
+    console.log(this.files);
+
+    for ( var i = 0; i < this.files.length; i++ ) {
+      addToImageList(this.files[i])
+    }
+  }
+
+  function addToImageList(file) {
+    var list = doc.getElementById('image-list');
+    var name = doc.createElement('span');
+    var preview = doc.createElement('img');
+    var upload = doc.createElement('a');
+
+    upload.classList.add("upload-image");
+    upload.innerHTML = "Upload";
+    upload.href = "image-upload";
+    upload.addEventListener('click', uploadImage, false);
+
+    name.innerHTML = file.name;
+    preview.file = file;
+    preview.classList.add("image-upload-preview");
+    list.appendChild(preview);
+    list.appendChild(name);
+
+    // REFERENCE: https://developer.mozilla.org/en/docs/
+    // Using_files_from_web_applications#Example_Showing_thumbnails_of_user-selected_images
+    var fr = new FileReader();
+    fr.onload = (function(img) {
+      return function(e) {
+        img.src = e.target.result;
+      };
+    }) (preview);
+    fr.readAsDataURL(file);
+  }
+
+  function uploadImage(e) {
+    e.preventDefault();
+    var src = e.target;
+
+    // get the image...
+
+    var fr = new FileReader();
+
+    fr.onload = function(e) {
+      console.log(e.target.result);
+      // ajax.post(src.href, e.target.result, function(rep) {
+      //   console.log(rep);
+      // });
+    }
+
+
+    fr.readAsDataURL();
+  }
 
 } (window, document, _))

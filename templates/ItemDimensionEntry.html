@@ -1,0 +1,36 @@
+  <form method="{{ method }}" action="{{ action }}">
+      <span class="form-element">
+        <label>Select a Measure</label>
+          {% for key, measure in measures %}
+          <span class="form-input-inline">
+          <span class='inline-title'>{{ key }}</span>
+            {% for unit in measure %}
+            <span class="option-item">
+              <input type="radio" name="unit" id="{{ unit | lower }}"
+                {% if (dimensions.unit) == (unit) %}
+                checked="checked"
+                {% endif %}
+                >
+              <label for="{{ unit | lower }}">{{ unit }}</label>
+            </span>
+            {% endfor %}
+          </span>
+          {% endfor %}
+      </span>
+
+      <span class="form-element">
+        <label for="width">Width</label>
+        <input type="number" min="0" name="width" id="width" value="{{ dimensions.width ? dimensions.width }}">
+      </span>
+
+      <span class="form-element">
+        <label for="height">Height</label>
+        <input type="number" min="0" name="height" id="height" value="{{ dimensions.width ? dimensions.height }}">
+      </span>
+
+      <span class="form-element">
+        <label for="length">Length</label>
+        <input type="number" min="0" name="length" id="length" value="{{ dimensions.width ? dimensions.length }}">
+      </span>
+
+  </form>

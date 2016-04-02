@@ -6,21 +6,26 @@
     <span class="form-element">
       <label for="">Client</label>
 
-      <span class="btn-group">
-        <span>Existing Client</span>
-        <a class="btn side-bar-loader"
-           data-loads="existing-client-selection"
-           data-updates="existing-client-selected">
-                Yes
-          </a>
-        <a class="btn side-bar-loader"
-           data-loads="new-client-selection"
-           data-updates="existing-client-selected">
-                No
-          </a>
+      <span class="form-input-inline">
+        <span class="inline-title">Existing Client</span>
+        <span class="option-item">
+          <input type="radio" name="existing" id="existingYes">
+          <label class="side-bar-loader"
+                data-loads="existing-client-selection"
+                data-updates="existing-client-selected"
+                for="existingYes">Yes</label>
+        </span>
+        <span class="option-item">
+          <input type="radio" name="existing" id="existingNo">
+          <label class="side-bar-loader"
+                 data-loads="new-client-selection"
+                 data-updates="new-client-selected"
+                 for="existingNo">No</label>
+        </span>
       </span>
 
       <div id="existing-client-selected"></div>
+      <div id="new-client-selected"></div>
     </span>
 
     <span class="form-element search-element">
@@ -57,10 +62,21 @@
       <a class="btn side-bar-loader"
          data-loads="item-dimensions"
          data-updates="item-dimensions-set">
-              Set Date Period
+              Set Item Dimensions
         </a>
 
       <div id="item-dimensions-set"></div>
+    </span>
+
+    <span class="form-element">
+      <label for="">Item Weight</label>
+      <a class="btn side-bar-loader"
+         data-loads="item-weight"
+         data-updates="item-weight-set">
+              Set Item Weight
+        </a>
+
+      <div id="item-weight-set"></div>
     </span>
 
     <span class="form-element">
@@ -68,7 +84,7 @@
       <a class="btn side-bar-loader"
          data-loads="item-images"
          data-updates="item-images-set">
-              Set Date Period
+              Set Item Images
         </a>
 
       <div id="item-images-set"></div>
@@ -92,7 +108,7 @@
 
     <span class="form-element">
       <label for="provenanceDetails">Provenance Details</label>
-      <textarea rols="40" cols="20" v-model="provenanceDetails">
+      <textarea rols="10" cols="30" v-model="provenanceDetails">
       </textarea>
     </span>
 
@@ -111,7 +127,7 @@
     </span>
 
     <span class="form-element">
-      <label for="additionalNotes">Agreement Signed</label>
+      <label for="">Agreement Signed</label>
       <span class="form-input-inline">
         <span class="option-item">
           <input type="radio" name="agreement" id="agreedYes">

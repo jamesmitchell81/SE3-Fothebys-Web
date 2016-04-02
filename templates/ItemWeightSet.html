@@ -1,0 +1,6 @@
+<div>
+  {% for key, weight in weights %}
+    <input type="hidden" name="{{ key }}" id="{{ key }}" value="{{ weight }}">
+    <div>{{ key | capitalize }} : {{ weight }}</div>
+  {% endfor %}
+</div>

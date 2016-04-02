@@ -1,0 +1,6 @@
+<div>
+  {% for key, dimension in dimensions %}
+    <input type="hidden" name="{{ key }}" id="{{ key }}" value="{{ dimension }}">
+    <div>{{ key | capitalize }} : {{ dimension }}</div>
+  {% endfor %}
+</div>

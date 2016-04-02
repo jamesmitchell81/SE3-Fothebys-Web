@@ -6,9 +6,13 @@ return [
     ['POST', '/record-appraisal', ['Fotheby\Controllers\Appraisals', 'insert']],
 
     // Clients.
-    ['GET',  '/existing-client-selection', ['Fotheby\Controllers\ClientSelection', 'display']],
-    ['POST', '/existing-client-selected',  ['Fotheby\Controllers\ClientSelection', 'store']],
-    ['GET',  '/existing-client-selected',  ['Fotheby\Controllers\ClientSelection', 'retrieve']],
+    ['GET',  '/new-client-selection', ['Fotheby\Controllers\ClientNewSelection', 'display']],
+    ['POST', '/new-client-selected',  ['Fotheby\Controllers\ClientNewSelection', 'store']],
+    ['GET',  '/new-client-selected',  ['Fotheby\Controllers\ClientNewSelection', 'retrieve']],
+
+    ['GET',  '/existing-client-selection', ['Fotheby\Controllers\ClientExistingSelection', 'display']],
+    ['POST', '/existing-client-selected',  ['Fotheby\Controllers\ClientExistingSelection', 'store']],
+    ['GET',  '/existing-client-selected',  ['Fotheby\Controllers\ClientExistingSelection', 'retrieve']],
     // ['GET',  '/expert-selection/search/{data}',    ['Fotheby\Controllers\ExpertSelection', 'search']],
 
     // Experts.
@@ -28,14 +32,22 @@ return [
     ['GET',  '/date-period-selected',  ['Fotheby\Controllers\DatePeriodSelection', 'retrieve']],
 
     // Item Dimension
-    ['GET',  '/item-dimensions', ['Fotheby\Controllers\ItemDimensionSelection', 'display']],
+    ['GET',  '/item-dimensions',      ['Fotheby\Controllers\ItemDimensionSelection', 'display']],
     ['POST', '/item-dimensions-set',  ['Fotheby\Controllers\ItemDimensionSelection', 'store']],
     ['GET',  '/item-dimensions-set',  ['Fotheby\Controllers\ItemDimensionSelection', 'retrieve']],
 
+    // Item Weight
+    ['GET',  '/item-weight',      ['Fotheby\Controllers\ItemWeightSelection', 'display']],
+    ['POST', '/item-weight-set',  ['Fotheby\Controllers\ItemWeightSelection', 'store']],
+    ['GET',  '/item-weight-set',  ['Fotheby\Controllers\ItemWeightSelection', 'retrieve']],
+
     // Item Images
-    ['GET',  '/item-images', ['Fotheby\Controllers\ItemDimensionSelection', 'display']],
-    ['POST', '/item-images-set',  ['Fotheby\Controllers\ItemDimensionSelection', 'store']],
-    ['GET',  '/item-images-set',  ['Fotheby\Controllers\ItemDimensionSelection', 'retrieve']],
+    ['GET',  '/item-images',      ['Fotheby\Controllers\ItemImageSelection', 'display']],
+    ['POST', '/item-images-set',  ['Fotheby\Controllers\ItemImageSelection', 'store']],
+    ['GET',  '/item-images-set',  ['Fotheby\Controllers\ItemImageSelection', 'retrieve']],
+
+    ['POST', '/image-upload',     ['Fotheby\Controllers\ItemImageSelection', 'upload']],
+
 ];
 
 

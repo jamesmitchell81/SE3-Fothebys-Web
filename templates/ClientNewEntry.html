@@ -1,0 +1,57 @@
+  <form method="{{ method }}" action="{{ action }}">
+    <fieldset>
+
+      <legend>Contact Details</legend>
+
+      <span class="form-element">
+        <label for="title">Title</label>
+        <input type="text" id="title" name="title" id="title" value="{{ details.title ? details.title }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="firstName">First Name</label>
+        <input type="text" id="firstName" name="firstName" id="firstName" value="{{ details.firstName ? details.firstName }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="surname">Surname</label>
+        <input type="text" id="surname" name="surname" id="surname" value="{{ details.surname ? details.surname }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="emailAddress">Email Address</label>
+        <input type="email" id="emailAddress" name="emailAddress" id="emailAddress" value="{{ details.emailAddress ? details.emailAddress }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="telNumber">Telephone Number</label>
+        <input type="text" id="telNumber" name="telNumber" id="telNumber" value="{{ details.telNumber ? details.telNumber }}" required>
+      </span>
+
+    </fieldset>
+    <fieldset>
+
+      <legend>Contact Details</legend>
+
+      <span class="form-element">
+        <label for="firstLine">First Line</label>
+        <input type="text" id="firstLine" name="firstLine" id="firstLine" value="{{ details.firstLine ? details.firstLine }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="secondLine">Second Line</label>
+        <input type="text" id="secondLine" name="secondLine" id="secondLine" value="{{ details.secondLine ? details.secondLine }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="townCity">Town/City</label>
+        <input type="text" id="townCity" name="townCity" id="townCity" value="{{ details.townCity ? details.townCity }}" required>
+      </span>
+
+      <span class="form-element">
+        <label for="postalCode">Postal Code</label>
+        <input type="text" id="postalCode" name="postalCode" id="postalCode" value="{{ details.postalCode ? details.postalCode }}" required>
+      </span>
+  </fieldset>
+
+  </form>
