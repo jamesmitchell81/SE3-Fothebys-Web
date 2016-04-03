@@ -27,6 +27,7 @@ header img
   display: block
 
 .side-panel
+  padding-top: 2em
   position: fixed
   right: 0
   top: 0
@@ -44,19 +45,23 @@ header img
 
 .side-panel__open
   width: 50%
-  padding: 2em
+  padding: 3em
   margin: 1em 0
   box-shadow: -2px -2px 5px #cacaca, 2px 2px 5px #cacaca
   overflow-y: scroll
 
 .side-panel__open #close-side-bar
-  display: block;
+  position: absolute;
+  top: 0
+  right: 0
+  margin: 1em
 
-// .slideout-transition
-//   transition: all 0.5s ease
-
-// .slideout-enter, .slideout-leave
-//   width: 0
+.btn.side-bar-confirm
+  position: absolute;
+  top: 0
+  left: 0
+  margin: 1em
+  font-size: 1em
 
 nav
   width: 100%

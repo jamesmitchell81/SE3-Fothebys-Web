@@ -1,4 +1,5 @@
 <form method="{{ method }}" action="{{ action }}">
+  <legend>Category Selection</legend>
   {% for category in categories %}
   <span class="option-item">
     <input type="radio" name="category" id="category-{{ category.id }}">

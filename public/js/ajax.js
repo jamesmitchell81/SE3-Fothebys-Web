@@ -39,6 +39,10 @@ window.ajax = (function() {
       this.contentType = "application/x-www-form-urlencoded";
       return this;
     },
+    setContentType(type) {
+      this.contentType = type;
+      return this;
+    },
     callback: function(){}
   };
 

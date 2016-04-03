@@ -50,6 +50,7 @@ header img {
   display: block; }
 
 .side-panel {
+  padding-top: 2em;
   position: fixed;
   right: 0;
   top: 0;
@@ -67,13 +68,23 @@ header img {
 
 .side-panel__open {
   width: 50%;
-  padding: 2em;
+  padding: 3em;
   margin: 1em 0;
   box-shadow: -2px -2px 5px #cacaca, 2px 2px 5px #cacaca;
   overflow-y: scroll; }
 
 .side-panel__open #close-side-bar {
-  display: block; }
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 1em; }
+
+.btn.side-bar-confirm {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 1em;
+  font-size: 1em; }
 
 nav {
   width: 100%;
@@ -117,6 +128,28 @@ nav {
 .page-title-bar {
   padding: 1.5em;
   width: 100%; }
+
+.btn {
+  float: right;
+  padding: 0.5em 1em;
+  display: inline-block;
+  background: #efefef;
+  box-shadow: 1px 1px 1px #cacaca;
+  border-radius: 2px;
+  border: none;
+  text-decoration: none;
+  color: #000;
+  cursor: pointer; }
+
+.upload-image-btn {
+  color: #000;
+  display: block;
+  padding: 0.5em 1em;
+  margin: 0.5em;
+  border-radius: 2px;
+  background: #fff;
+  box-shadow: 1px 1px 1px #cacaca;
+  text-decoration: none; }
 
 body, html {
   font-family: "Fira Sans", sans-serif;
@@ -209,18 +242,6 @@ input, textarea {
   text-align: right;
   font-size: 0.9em; }
 
-.btn {
-  float: right;
-  padding: 0.5em 1em;
-  display: inline-block;
-  background: #efefef;
-  box-shadow: 1px 1px 1px #cacaca;
-  border-radius: 2px;
-  border: none;
-  text-decoration: none;
-  color: #000;
-  cursor: pointer; }
-
 .option-item {
   width: 100%;
   float: left;
@@ -229,11 +250,7 @@ input, textarea {
 
 .option-item input[type='checkbox'],
 .option-item input[type='radio'] {
-  border: none;
-  box-shadow: none;
-  display: inline;
-  margin-bottom: -2em;
-  float: left; }
+  display: none; }
 
 .option-item label {
   background: #efefef;
@@ -272,17 +289,37 @@ input, textarea {
   background: #efefef;
   border-radius: 10px;
   text-align: center;
-  box-shadow: inset 2px 2px 2px #cacaca; }
+  box-shadow: inset 2px 2px 2px #cacaca;
+  cursor: pointer;
+  transition: all 0.5s ease; }
+
+.drop-zone:hover {
+  background: #000;
+  color: #fff; }
 
 .drop-zone-input {
   display: none; }
 
-.images-list {
+.image-list {
   width: 70%;
   margin: 2em auto 0 auto; }
 
-.image-list .image-preview {
-  width: 50px; }
+.image-item {
+  width: 100%;
+  box-shadow: inset 2px 2px 2px #cacaca;
+  border-radius: 2px;
+  background: #efefef;
+  margin: 0.5em;
+  padding: 0.5em; }
+
+.image-upload-preview {
+  width: 75px; }
+
+.image-filename {
+  width: 50%;
+  display: block;
+  border: 1px solid #000;
+  vertical-align: middle; }
 
 .input-btn-group {
   width: 100%; }

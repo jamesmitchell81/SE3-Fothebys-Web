@@ -32,9 +32,25 @@ class DataAccess
     return $result;
   }
 
-  public function post()
+  public function post($resource, $data)
   {
+    $this->setUp();
+    $url = $this->rootPath . $resource;
 
+    // CURLOPT_HTTPHEADER
+    curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
+        'Content-Type'   => 'image/png;base64',
+        'Content-Length' => strlen($data)
+      ]);
+
+    curl_setopt($this->curl, CURLOPT_URL, $url);
+    curl_setopt($this->curl, CURLOPT_POST, true);
+    curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
+    curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+
+    $result = curl_exec($this->curl);
+
+    $this->clearDown();
     return $result;
   }
 

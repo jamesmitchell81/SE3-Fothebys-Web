@@ -41,6 +41,22 @@ class ItemImageSelection extends Controller
 
   public function upload()
   {
-    var_dump($GLOBALS);
+    $data = file_get_contents("php://input");
+    $data = str_replace("data:image/jpeg;base64,", "", $data);
+
+    $da = new DataAccess();
+    $result = $da->post("item-images/dude", $data);
+    // var_dump($result);
+
+    $result = $da->get("item-images/1");
+    // var_dump($result);
+
+    $json = json_decode($result, true);
+
+    $d = $json['data'];
+
+    echo "<img src='data:image/png;base64," . $d ."'/>";
   }
 }
+
+
