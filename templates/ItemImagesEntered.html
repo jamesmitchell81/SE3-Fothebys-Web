@@ -1,0 +1,6 @@
+<div>
+  {% for image in images %}
+  <input type="hidden" name="image" id="{{ image.key }}" value="{{ image.value }}">
+  <div>{{ image.key }}</div>
+  {% endfor %}
+</div>

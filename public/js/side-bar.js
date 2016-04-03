@@ -46,8 +46,7 @@
     var formData = collectFormData(form);
     var send = "json=" + JSON.stringify(formData);
 
-    console.log(send);
-
+    ajax.setContentType("application/x-www-form-urlencoded");
     ajax.post(updates, send, function(rep) {
       // doc.write(rep);
       ajax.get(updates, function(data) {
@@ -59,7 +58,7 @@
   }
 
   function collectFormData(form) {
-    var inputs = form.querySelectorAll("input, textarea, select");
+    var inputs = form.querySelectorAll("textarea, select, input:not([type='file'])");
     var data = [];
 
     for ( var i = 0; i < inputs.length; i++ ) {
@@ -101,7 +100,6 @@
     sideBar.classList.add("side-panel__closed");
   }
 
-
   function updateImages(e) {
     var src = e.target;
 
@@ -123,6 +121,7 @@
 
     upload.classList.add("upload-image-btn");
     upload.setAttribute("data-image-id", index);
+    upload.setAttribute("data-image-name", file.name);
     upload.innerHTML = "Upload";
     upload.href = "image-upload";
     upload.addEventListener('click', uploadImage, false);
@@ -153,18 +152,51 @@
     e.preventDefault();
     var src = e.target;
     var index = src.getAttribute("data-image-id");
-    // get the image...
 
     var fr = new FileReader();
 
     fr.onload = function(e) {
+      // allow jpg.
       ajax.setContentType("image/png;base64");
       ajax.post(src.href, e.target.result, function(rep) {
-        doc.write(rep);
+        // doc.write(rep);
+        var rep = JSON.parse(rep);
+        var elem = doc.createElement('span');
+        elem.innerHTML = rep.status;
+        src.parentElement.appendChild(elem);
+
+        if (rep.status === "success" ) {
+          var input = doc.createElement("input");
+          input.type = "hidden";
+          input.id = "image-id";
+          input.value = rep.id;
+          src.parentElement.appendChild(input);
+          src.href = "remove-image/" + rep.id;
+          src.innerHTML = "Remove";
+          src.removeEventListener('click', uploadImage, false);
+          src.addEventListener('click', removeImage, false);
+        }
       });
     }
     // fr.readAsBinaryString(imageFiles[index]);
     fr.readAsDataURL(imageFiles[index]);
   }
+
+  function removeImage(e) {
+    e.preventDefault();
+    var src = e.target;
+
+    ajax.get(src.href, function(rep) {
+      // doc.write(rep);
+      rep = JSON.parse(rep);
+
+      if ( rep.status === "success" ) {
+        // change button back.
+      }
+    });
+
+  }
+
+
 
 } (window, document, _))

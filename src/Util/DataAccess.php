@@ -47,6 +47,8 @@ class DataAccess
     curl_setopt($this->curl, CURLOPT_POST, true);
     curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
     curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+    // curl_setopt($this->curl, CURLOPT_VERBOSE, true);
+    curl_setopt($this->curl, CURLOPT_HEADER, true);
 
     $result = curl_exec($this->curl);
 
@@ -70,9 +72,18 @@ class DataAccess
     return $result;
   }
 
-  public function delete()
+  public function delete($resource)
   {
+    $this->setUp();
+    $url = $this->rootPath . $resource;
 
+    curl_setopt($this->curl, CURLOPT_URL, $url);
+    curl_setopt($this->curl, CURLOPT_CUSTOMREQUEST, 'DELETE');
+    curl_setopt($this->curl, CURLOPT_HEADER, true);
+    curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
+
+    $result = curl_exec($this->curl);
+    $this->clearDown();
     return $result;
   }
 

@@ -1,6 +1,7 @@
 <?php namespace Fotheby\Controllers;
 
 use Fotheby\Util\DataAccess;
+use Fotheby\Util\Session;
 
 class ItemImageSelection extends Controller
 {
@@ -17,23 +18,19 @@ class ItemImageSelection extends Controller
     $assoc = true;
     $data = json_decode($this->request->getParameter("json"), $assoc);
 
-    // send to server and validate
-
     session_start();
     $_SESSION['images'] = $data;
   }
 
-
   public function retrieve()
   {
     session_start();
-    $client = $_SESSION['images'];
-
-    // get from server.
-
-    $data = [
-      'images' => $images
-    ];
+    if ( isset($_SESSION['images']) )
+    {
+      $data = [
+        'images' => $_SESSION["images"]
+      ];
+    }
 
     $html = $this->view->render("ItemImagesEntered", $data);
     $this->response->setContent($html);
@@ -41,21 +38,68 @@ class ItemImageSelection extends Controller
 
   public function upload()
   {
-    $data = file_get_contents("php://input");
-    $data = str_replace("data:image/jpeg;base64,", "", $data);
+    $input = file_get_contents("php://input");
+    $data = str_replace("data:image/jpeg;base64,", "", $input);
 
     $da = new DataAccess();
-    $result = $da->post("item-images/dude", $data);
-    // var_dump($result);
+    $response = $da->post("item-images", $data);
 
-    $result = $da->get("item-images/1");
-    // var_dump($result);
+    // only if success!!!!
+    $response = preg_split("/\n/", $response);
+    $id = 0;
+    foreach ($response as $value) {
+      if ( preg_match("/(Location:)/", $value))
+      {
+        $parts = preg_split("/\//", $value);
+        $last = count($parts) - 1;
+        $id = str_replace("\r", "", $parts[$last]);
+      }
+    }
 
-    $json = json_decode($result, true);
+    if ( Session::is_set('images') )
+    {
+      $images = Session::get('images');
+    } else {
+      $images[] = [
+        'id'    => $id,
+        'data'  => $input
+      ];
+      Session::set('images', $images);
+    }
 
-    $d = $json['data'];
+    $output = [
+      'status' => 'success',
+      'id' => $id
+    ];
 
-    echo "<img src='data:image/png;base64," . $d ."'/>";
+    $output = json_encode($output);
+
+    $this->response->setContent($output);
+    // $response = $da->get("item-images/1");
+    // var_dump($response);
+    // $json = json_decode($response, true);
+    // $d = $json['data'];
+    // echo "<img src='data:image/png;base64," . $d ."'/>";
+  }
+
+  public function remove($params)
+  {
+    $id = $params['id'];
+
+    $da = new DataAccess();
+    $path = "item-images/{$id}";
+
+    $response = $da->delete($path);
+
+    // test $response for ok...
+    // remove from session.
+
+    $output = [
+      'status' => 'success'
+    ];
+
+    $output = json_encode($output);
+    $this->response->setContent($output);
   }
 }
 

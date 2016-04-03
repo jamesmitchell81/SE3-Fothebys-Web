@@ -47,6 +47,7 @@ return [
     ['GET',  '/item-images-set',  ['Fotheby\Controllers\ItemImageSelection', 'retrieve']],
 
     ['POST', '/image-upload',     ['Fotheby\Controllers\ItemImageSelection', 'upload']],
+    ['GET',  '/remove-image/{id}',     ['Fotheby\Controllers\ItemImageSelection', 'remove']],
 
 ];
 
