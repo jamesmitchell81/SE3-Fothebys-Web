@@ -1,8 +1,7 @@
 {% extends "Layout.html" %}
 {% block content %}
 
-  <form action="">
-
+  <form method="POST" action="record-appraisal">
     <legend>Record Item Appraisal</legend>
 
     <span class="form-element">
@@ -144,9 +143,11 @@
 
     <span class="form-element">
       <label for="additionalNotes">Additional Notes</label>
-      <textarea rols="40" cols="20" v-model="additionalNotes">
+      <textarea rols="40" cols="20" name="additionalNotes" id="additionalNotes">
       </textarea>
     </span>
+
+    <button id="submit" class="btn">Submit</button>
 
   </form>
 
