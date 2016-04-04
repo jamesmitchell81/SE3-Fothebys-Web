@@ -44,6 +44,17 @@ class ItemImageSelection extends Controller
     $da = new DataAccess();
     $response = $da->post("item-images", $data);
 
+    // if not created return early.
+    if ( !preg_match('/(201 Created)/', $response) ) {
+      $output = [
+        'status' => 'failed'
+      ];
+
+      $output = json_encode($output);
+      $this->response->setContent($output);
+      return;
+    }
+
     // only if success!!!!
     $response = preg_split("/\n/", $response);
     $id = 0;
@@ -73,7 +84,6 @@ class ItemImageSelection extends Controller
     ];
 
     $output = json_encode($output);
-
     $this->response->setContent($output);
     // $response = $da->get("item-images/1");
     // var_dump($response);
