@@ -11,6 +11,8 @@ class ExpertSelection extends Controller
     $json = $dataAccess->get('expert');
     $list = json_decode($json);
 
+
+
     $data = [
       'experts' => $list,
       'action'  => 'expert-selected',
@@ -26,9 +28,9 @@ class ExpertSelection extends Controller
     $data = json_decode($this->request->getParameter("json"), true);
 
     foreach ($data as $key => $value) {
-      if ( $value['value'] == true )
+      if ( $value == true )
       {
-        $id = (int)preg_replace('/^expert-/', '', $value['key']);
+        $id = (int)preg_replace('/^expert-/', '', $value);
       }
     }
 

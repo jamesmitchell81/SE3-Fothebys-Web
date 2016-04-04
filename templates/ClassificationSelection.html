@@ -1,0 +1,13 @@
+<form method="{{ method }}" action="{{ action }}">
+  <legend>Classification Selection</legend>
+  {% for classification in classifications %}
+  <span class="option-item">
+    <input type="checkbox" name="classification" id="classification-{{ classification.id }}"
+          {% if (selected.id) == (classification.id) %}
+            checked="checked"
+          {% endif %}
+          >
+    <label for="classification-{{ classification.id }}">{{ classification.name }}</label>
+  </span>
+  {% endfor %}
+</form>

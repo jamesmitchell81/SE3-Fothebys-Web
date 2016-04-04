@@ -1,0 +1,8 @@
+<div>
+  {% for classification in classifications %}
+  <input type="hidden" name="classification-{{ classification.id }}" id="classification-{{ classification.id }}" value="{{ classification.id }}">
+  <div>
+    {{ classification.name | capitalize }}
+  </div>
+  {% endfor %}
+</div>

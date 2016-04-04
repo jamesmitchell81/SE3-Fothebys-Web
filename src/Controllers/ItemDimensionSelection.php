@@ -34,11 +34,11 @@ class ItemDimensionSelection extends Controller
     $dimensions = [];
     foreach ($data as $key => $value)
     {
-      if ( (gettype($value['value']) == "boolean") )
+      if ( (gettype($value) == "boolean") )
       {
-        if ($value['value'])
+        if ($value)
         {
-          $dimensions['unit'] = $value['key'];
+          $dimensions['unit'] = $key;
           break;
         }
       }
@@ -46,10 +46,9 @@ class ItemDimensionSelection extends Controller
 
     foreach ($data as $key => $value)
     {
-      if ( (gettype($value['value']) == "string") && ($value['value'] !== "") )
+      if ( (gettype($value) == "string") && ($value !== "") )
       {
-        $k = $value['key'];
-        $dimensions[$k] = $value['value'];
+        $dimensions[$key] = $value;
       }
     }
 

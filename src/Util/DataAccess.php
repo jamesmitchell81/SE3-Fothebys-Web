@@ -2,6 +2,7 @@
 
 class DataAccess
 {
+  private $contentType = "application/x-www-form-urlencoded";
   private $rootPath = "http://localhost:8080/services/";
   private $curl;
 
@@ -17,6 +18,11 @@ class DataAccess
   private function clearDown()
   {
     curl_close($this->curl);
+  }
+
+  public function setContentType($contentType)
+  {
+    $this->contentType = $contentType;
   }
 
   public function get($resource)
@@ -37,21 +43,21 @@ class DataAccess
     $this->setUp();
     $url = $this->rootPath . $resource;
 
-    // CURLOPT_HTTPHEADER
+    $size = strlen($data);
     curl_setopt($this->curl, CURLOPT_HTTPHEADER, [
-        'Content-Type'   => 'image/png;base64',
-        'Content-Length' => strlen($data)
+        "Accept: $this->contentType",
+        "Content-Type: $this->contentType",
+        "Content-Length: $size"
       ]);
 
     curl_setopt($this->curl, CURLOPT_URL, $url);
     curl_setopt($this->curl, CURLOPT_POST, true);
     curl_setopt($this->curl, CURLOPT_POSTFIELDS, $data);
     curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
-    // curl_setopt($this->curl, CURLOPT_VERBOSE, true);
+    curl_setopt($this->curl, CURLOPT_VERBOSE, true);
     curl_setopt($this->curl, CURLOPT_HEADER, true);
 
     $result = curl_exec($this->curl);
-
     $this->clearDown();
     return $result;
   }

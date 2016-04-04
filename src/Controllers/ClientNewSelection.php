@@ -9,6 +9,12 @@ class ClientNewSelection extends Controller
 
     $data = [];
 
+    session_start();
+    if ( array_key_exists('client', $_SESSION) )
+    {
+      $data['client'] = $_SESSION['client'];
+    }
+
     $html = $this->view->render("ClientNewEntry", $data);
     $this->response->setContent($html);
   }
@@ -18,10 +24,48 @@ class ClientNewSelection extends Controller
     $assoc = true;
     $data = json_decode($this->request->getParameter("json"), $assoc);
 
-    // send to server and validate
+    $out = [
+      'title' => $data['title'],
+      'firstName' => $data['firstName'],
+      'surname' => $data['surname'],
+      'emailAddress' => $data['emailAddress'],
+      'telNumber' => $data['telNumber'],
+      'contactAddress' => [
+        'firstLine' => $data['firstLine'],
+        'secondLine' => $data['secondLine'],
+        'townCity' => $data['townCity'],
+        'postalCode' => $data['postalCode']
+      ]
+    ];
+
+    $send = json_encode($out);
+    $access = new DataAccess();
+    $access->setContentType("application/json");
+    $response = $access->post('clients', $send);
+
+    var_dump($response);
+
+    $id = 0;
+    if ( preg_match('/(201 Created)/', $response) )
+    {
+      $response = preg_split("/\n/", $response);
+      foreach ($response as $value) {
+        if ( preg_match("/(Location:)/", $value))
+        {
+          $parts = preg_split("/\//", $value);
+          $last = count($parts) - 1;
+          $id = str_replace("\r", "", $parts[$last]);
+        }
+      }
+    }
+
+    $client = [
+      'id' => $id,
+      'details' => $data
+    ];
 
     session_start();
-    $_SESSION['client'] = $data;
+    $_SESSION['client'] = $client;
   }
 
 
@@ -29,8 +73,6 @@ class ClientNewSelection extends Controller
   {
     session_start();
     $client = $_SESSION['client'];
-
-    // get from server.
 
     $data = [
       'client' => $client

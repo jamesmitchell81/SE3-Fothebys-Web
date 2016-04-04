@@ -5,10 +5,15 @@ class DatePeriodSelection extends Controller
 
   public function display()
   {
-    $data = [
-      'action' => 'date-period-selected',
-      'method' => 'GET'
-    ];
+
+    session_start();
+    if ( array_key_exists('dates', $_SESSION) )
+    {
+      $data['dates'] = $_SESSION['dates'];
+    }
+
+    $data['action'] = 'date-period-selected';
+    $data['method'] = 'GET';
 
     $html = $this->view->render("DatePeriodEntry", $data);
     $this->response->setContent($html);
@@ -22,14 +27,13 @@ class DatePeriodSelection extends Controller
 
     foreach ( $data as $key => $value )
     {
-      if ( $value['value'] !== "" )
+      if ( $value !== "" )
       {
         $date = [
-          'id' => $value['key'],
-          'label' => str_replace("-", " ", $value['key']),
-          'value' => $value['value']
+          'label' => join(" ", preg_split("/(?=[A-Z])/", $key)), // REFERENCE: http://stackoverflow.com/questions/8998382/php-explode-at-capital-letters
+          'value' => $value
         ];
-        $dates[] = $date;
+        $dates[$key] = $date;
       }
     }
 

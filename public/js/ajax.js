@@ -1,6 +1,5 @@
 window.ajax = (function() {
 
-  // add cross browser checking.
   var http = new XMLHttpRequest();
 
   http.onreadystatechange = function() {
@@ -13,6 +12,7 @@ window.ajax = (function() {
 
   var ajax = {
     contentType: "application/x-www-form-urlencoded",
+    responseType: "", // may need for blob
     get: function(url, callback) {
       this.callback = callback;
       http.open("GET", url);
@@ -39,7 +39,10 @@ window.ajax = (function() {
       this.contentType = "application/x-www-form-urlencoded";
       return this;
     },
-    setContentType(type) {
+    setResponseType: function(type) {
+      http.responseType = type;
+    },
+    setContentType: function(type) {
       this.contentType = type;
       return this;
     },

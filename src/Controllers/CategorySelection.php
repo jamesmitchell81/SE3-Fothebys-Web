@@ -11,11 +11,15 @@ class CategorySelection extends Controller
     $json = $dataAccess->get('category');
     $list = json_decode($json);
 
-    $data = [
-      'categories' => $list,
-      'action'  => 'category-selected',
-      'method'  => 'POST'
-    ];
+    session_start();
+    if ( array_key_exists('category', $_SESSION) )
+    {
+      $data['selected'] = $_SESSION['category'];
+    }
+
+    $data['categories'] = $list;
+    $data['action'] = 'category-selected';
+    $data['method']  = 'POST';
 
     $html = $this->view->render("CategorySelection", $data);
     $this->response->setContent($html);
@@ -24,13 +28,7 @@ class CategorySelection extends Controller
   public function store()
   {
     $data = json_decode($this->request->getParameter("json"), true);
-
-    foreach ($data as $key => $value) {
-      if ( $value['value'] == true )
-      {
-        $id = (int)preg_replace('/^category-/', '', $value['key']);
-      }
-    }
+    $id = (int)preg_replace('/^category-/', '', $data['category']);
 
     $dataAccess = new DataAccess();
     $json = $dataAccess->get("category/{$id}");
@@ -57,20 +55,4 @@ class CategorySelection extends Controller
     $html = $this->view->render("CategoryDetails", $data);
     $this->response->setContent($html);
   }
-
-  // public function search($params)
-  // {
-  //   $dataAccess = new DataAccess();
-  //   // $json = $dataAccess->get('expert/search');
-  //   $json = $dataAccess->get('expert');
-  //   $list = json_decode($json);
-
-  //   $data = [
-  //     'experts' => $list
-  //   ];
-
-  //   $html = $this->view->render("ExpertSelection", $data);
-  //   $this->response->setContent($html);
-  // }
-
 }

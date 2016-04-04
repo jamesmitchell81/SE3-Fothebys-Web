@@ -34,11 +34,11 @@ class ItemWeightSelection extends Controller
     $weights = [];
     foreach ($data as $key => $value)
     {
-      if ( (gettype($value['value']) == "boolean") )
+      if ( (gettype($value) == "boolean") )
       {
-        if ($value['value'])
+        if ($value)
         {
-          $weights['unit'] = $value['key'];
+          $weights['unit'] = $key;
           break;
         }
       }
@@ -46,10 +46,9 @@ class ItemWeightSelection extends Controller
 
     foreach ($data as $key => $value)
     {
-      if ( (gettype($value['value']) == "string") && ($value['value'] !== "") )
+      if ( (gettype($value) == "string") && ($value !== "") )
       {
-        $k = $value['key'];
-        $weights[$k] = $value['value'];
+        $weights[$key] = $value;
       }
     }
 

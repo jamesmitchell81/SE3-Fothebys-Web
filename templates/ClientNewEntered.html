@@ -1,5 +1,5 @@
 <div>
-  {% for c in client %}
-  <div>{{ c.key }} : {{ c.value }}</div>
-  {% endfor %}
+  <input type="hidden" name="client-id" id="client-id" value="{{ client.id }}">
+  <div>Client Name : {{ client.details.title }} {{ client.details.firstName }} {{ client.details.surname }}</div>
+  <div>Client Email : {{ client.details.emailAddress }}</div>
 </div>

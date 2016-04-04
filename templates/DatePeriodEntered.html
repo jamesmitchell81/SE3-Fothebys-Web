@@ -1,6 +1,6 @@
 <div>
-  {% for date in dates %}
-  <input type="hidden" name="{{ date.id }}" id="{{ date.id }}" value="{{ date.id }}">
+  {% for key, date in dates %}
+  <input type="hidden" name="{{ key }}" id="{{ key }}" value="{{ date.value }}">
   <div>{{ date.label | capitalize }} : {{ date.value }}</div>
   {% endfor %}
 </div>

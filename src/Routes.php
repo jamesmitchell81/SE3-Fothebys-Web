@@ -26,6 +26,11 @@ return [
     ['POST', '/category-selected',  ['Fotheby\Controllers\CategorySelection', 'store']],
     ['GET',  '/category-selected',  ['Fotheby\Controllers\CategorySelection', 'retrieve']],
 
+    // Category
+    ['GET',  '/classification-selection', ['Fotheby\Controllers\ClassificationSelection', 'display']],
+    ['POST', '/classification-selected',  ['Fotheby\Controllers\ClassificationSelection', 'store']],
+    ['GET',  '/classification-selected',  ['Fotheby\Controllers\ClassificationSelection', 'retrieve']],
+
     // Date Period
     ['GET',  '/date-period-selection', ['Fotheby\Controllers\DatePeriodSelection', 'display']],
     ['POST', '/date-period-selected',  ['Fotheby\Controllers\DatePeriodSelection', 'store']],

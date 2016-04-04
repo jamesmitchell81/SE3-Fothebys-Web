@@ -11,7 +11,9 @@ class Appraisals extends Controller
 
   public function insert()
   {
+    $data = $this->request->getParameters();
 
+    var_dump($data);
 
 
   }

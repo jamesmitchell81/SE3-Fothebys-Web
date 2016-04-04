@@ -4,24 +4,24 @@
 
     <span class="form-element">
       <label for="date-description">Date Description</label>
-      <input type="text" name="date-description" id="date-description">
+      <input type="text" name="dateDescription" id="dateDescription" value="{{ dates.dateDescription.value }}">
     </span>
 
     <span class="form-element">
       <label for="date">Specific Date</label>
-      <input type="date" min="0" name="date" id="date">
+      <input type="date" min="0" name="date" id="date" value="{{ dates.date.value }}">
     </span>
 
     <span class="form-element">
       <label for="itemName">Years Between</label>
       <span class="form-input-inline">
-        <input type="number" min="0" name="year-between-start" id="year-between-start">
-        <input type="number" min="0" name="year-between-start" id="year-between-start">
+        <input type="number" min="0" name="yearBetweenStart" id="yearBetweenStart" value="{{ dates.yearBetweenStart.value }}">
+        <input type="number" min="0" name="yearBetweenEnd" id="yearBetweenEnd" value="{{ dates.yearBetweenEnd.value }}">
       </span>
     </span>
 
     <span class="form-element">
       <label for="year">Year</label>
-      <input type="number" name="year" id="year">
+      <input type="number" name="year" id="year" value="{{ dates.year.value }}">
     </span>
   </form>

@@ -40,8 +40,10 @@ class ItemImageSelection extends Controller
   {
     $input = file_get_contents("php://input");
     $data = str_replace("data:image/jpeg;base64,", "", $input);
+    $data = str_replace("data:image/png;base64,", "", $data);
 
     $da = new DataAccess();
+    $da->setContentType('image/png;base64');
     $response = $da->post("item-images", $data);
 
     // if not created return early.

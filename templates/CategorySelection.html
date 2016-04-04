@@ -2,7 +2,11 @@
   <legend>Category Selection</legend>
   {% for category in categories %}
   <span class="option-item">
-    <input type="radio" name="category" id="category-{{ category.id }}">
+    <input type="radio" name="category" id="category-{{ category.id }}"
+          {% if (selected.id) == (category.id) %}
+            checked="checked"
+          {% endif %}
+          >
     <label for="category-{{ category.id }}">{{ category.name }}</label>
   </span>
   {% endfor %}
